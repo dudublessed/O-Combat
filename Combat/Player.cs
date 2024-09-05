@@ -11,11 +11,17 @@ namespace Combat
     class Player
     {
         public string characterName;
+        public int level;
+        public double xp;
+        public double maxXp;
         public int characterLife;
         public Classes characterClass;
 
-        public Player (Classes charClass = null, string charName = " ", int charLife = 100)
+        public Player(Classes charClass = null, int charLevel = 1, double charXp = 0, double charMaxXp = 50, string charName = " ", int charLife = 100)
         {
+            level = charLevel;
+            xp = charXp;
+            maxXp = charMaxXp;
             characterName = charName;
             characterLife = charLife;
             characterClass = charClass;
@@ -35,11 +41,11 @@ namespace Combat
                 if (nameAnswer == " " || nameAnswer == "")
                 {
                     Console.Clear();
-                    Thread.Sleep(1500);
+                    Thread.Sleep(2500);
                     Console.WriteLine("You can't be no one, nor be the one without a name.");
-                    Thread.Sleep(1500);
+                    Thread.Sleep(2500);
                     Console.WriteLine("Now tell me, truly...");
-                    Thread.Sleep(1500);
+                    Thread.Sleep(2500);
                     Console.Clear();
                 }
                 else
@@ -52,10 +58,10 @@ namespace Combat
             Thread.Sleep(1000);
             Console.WriteLine($"Hmm...");
             Thread.Sleep(2000);
-            Console.WriteLine($"{characterName} right?");
-            Thread.Sleep(2000);
+            Console.WriteLine($"{characterName}, right?");
+            Thread.Sleep(2500);
             Console.WriteLine(phrases[choosenPhrase]);
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
 
             Console.Clear();
         }
@@ -94,9 +100,38 @@ namespace Combat
                 
             }
             characterClass.ShowInfo(characterClass.name);
-
+            characterClass.classTalk(characterClass.name);
         }
 
+        public void ShowLevelProgress()
+        {
+            if (xp >= maxXp)
+            {
+                xp = (xp - maxXp);
+                maxXp *=  2;
+                level += 1;
+                characterClass.weaponDMG += 2;
+                Console.WriteLine("________");
+                Console.WriteLine("");
+                Console.WriteLine($"Level: {level}");
+                Console.WriteLine($"Xp: {xp}/{maxXp}");
+                Console.WriteLine($"Weapon DMG: {characterClass.weaponDMG}");
+                Console.WriteLine("");
+                Console.WriteLine("________");
+                Console.WriteLine("");
+            }
+            else
+            {
+                Console.WriteLine("________");
+                Console.WriteLine("");
+                Console.WriteLine($"Level: {level}");
+                Console.WriteLine($"Xp: {xp}/{maxXp}");
+                Console.WriteLine($"Weapon DMG: {characterClass.weaponDMG}");
+                Console.WriteLine("");
+                Console.WriteLine("________");
+                Console.WriteLine("");
+            }
+        }
 
     }
 }

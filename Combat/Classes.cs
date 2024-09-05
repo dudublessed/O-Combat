@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,19 +14,20 @@ namespace Combat
         public string weapon;
         public int weaponDMG;
 
+        private static Random rand = new Random();
 
-        public Classes(string className, int classDefense, string classWeapon, int classWeaponDMG)
+        public Classes(string className, int classDefense, string classWeapon, int minDMG, int maxDMG)
         {
             name = className;
             defense = classDefense;
             weapon = classWeapon;
-            weaponDMG = classWeaponDMG;
+            weaponDMG = rand.Next(minDMG, maxDMG + 1); ;
         }
 
-        public static Classes Warrior = new Classes("Warrior", 10, "Sword", 0);
-        public static Classes Mage = new Classes("Mage", 5, "Staff", 0);
-        public static Classes Assassin = new Classes("Assassin", 7, "Dagger", 0);
-        public static Classes Hunter = new Classes("Hunter", 5, "Bow", 0);
+        public static Classes Warrior = new Classes("Warrior", 10, "Sword", 100, 200);
+        public static Classes Mage = new Classes("Mage", 5, "Staff", 18, 20);
+        public static Classes Assassin = new Classes("Assassin", 7, "Dagger", 14, 18);
+        public static Classes Hunter = new Classes("Hunter", 5, "Bow", 16, 24);
 
         public void ShowInfo(string classAnswer)
         {
@@ -64,6 +66,37 @@ namespace Combat
                         break;
                 }
             
+        }
+
+        public void classTalk (string classAnswer)
+        {
+            switch (classAnswer.ToLower())
+            {
+                case "warrior":
+                    Thread.Sleep(1500);
+                    Console.WriteLine("You are indeed courageous... Let's see if you will faint or not.");
+                    Thread.Sleep(2500);
+                    Console.Clear();
+                    break;
+                case "mage":
+                    Thread.Sleep(1500);
+                    Console.WriteLine("It seems that you preffer looking into what you should not. You shall not prosper.");
+                    Thread.Sleep(2500);
+                    Console.Clear();
+                    break;
+                case "assassin":
+                    Thread.Sleep(1500);
+                    Console.WriteLine("The one that lurks in the dark, that no one can see... A coward might survive, but at the cost of his honor. But... does he have any?");
+                    Thread.Sleep(2500);
+                    Console.Clear();
+                    break;
+                case "hunter":
+                    Thread.Sleep(1500);
+                    Console.WriteLine("Far distances you go, but your feet remains the same. What shall happen to you?");
+                    Thread.Sleep(2500);
+                    Console.Clear();
+                    break;
+            }
         }
     }
 }
