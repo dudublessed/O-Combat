@@ -29,7 +29,7 @@ namespace Combat
 
             for (int i = 0; i < 100; i++)
             {
-                int randDelay = rand.Next(1, 1);
+                int randDelay = rand.Next(1, 200);
                 string loadMessage = $"Loading {i}/100";
                 Console.WriteLine(loadMessage);
 
