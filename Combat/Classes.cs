@@ -24,7 +24,7 @@ namespace Combat
             weaponDMG = rand.Next(minDMG, maxDMG + 1); ;
         }
 
-        public static Classes Warrior = new Classes("Warrior", 10, "Sword", 100, 200);
+        public static Classes Warrior = new Classes("Warrior", 10, "Sword", 12, 16);
         public static Classes Mage = new Classes("Mage", 5, "Staff", 18, 20);
         public static Classes Assassin = new Classes("Assassin", 7, "Dagger", 14, 18);
         public static Classes Hunter = new Classes("Hunter", 5, "Bow", 16, 24);
